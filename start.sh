@@ -17,6 +17,7 @@ docker run \
     -p 27015:27015/udp \
     -p 27015:27015 \
     -p 27005:27005/udp \
+    -v ${NAME}:/home/steam \
     -it \
     --name "${NAME}" \
     ceifa/"${NAME}"

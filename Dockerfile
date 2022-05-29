@@ -1,13 +1,12 @@
 # BASE IMAGE
-FROM debian:buster-slim
+FROM ubuntu:bionic
 
-LABEL maintainer="ceifa"
-LABEL description="A structured Garry's Mod dedicated server under a debian linux image"
+LABEL maintainer="cryotheum"
+LABEL description="Garry's Mod dedicated using an ubuntu image"
 
-ENV DEBIAN_FRONTEND noninteractive
 # INSTALL NECESSARY PACKAGES
-RUN dpkg --add-architecture i386 && apt-get update && apt-get -y --no-install-recommends --no-install-suggests install \
-    wget ca-certificates tar gcc g++ libgcc1 libssl1.1 libtinfo5 lib32z1 gdb libsdl1.2debian libfontconfig net-tools unzip
+RUN apt-get update && apt-get -y --no-install-recommends --no-install-suggests install \
+    wget lib32ncurses5 lib32gcc1 lib32stdc++6 lib32tinfo5 ca-certificates screen tar bzip2 gzip unzip gdb
 
 # CLEAN UP
 RUN apt-get clean
@@ -24,23 +23,14 @@ RUN wget -P /home/gmod/steamcmd/ https://steamcdn-a.akamaihd.net/client/installe
     && rm -rf /home/gmod/steamcmd/steamcmd_linux.tar.gz
 
 # SETUP STEAMCMD TO DOWNLOAD GMOD SERVER
-COPY assets/update-x64.txt /home/gmod/update.txt
+COPY assets/update.txt /home/gmod/update.txt
 RUN /home/gmod/steamcmd/steamcmd.sh +runscript /home/gmod/update.txt +quit
 
-# SETUP CSS CONTENT
-RUN /home/gmod/steamcmd/steamcmd.sh +login anonymous \
-    +force_install_dir /home/gmod/temp \
-    +app_update 232330 validate \
-    +quit
-RUN mkdir /home/gmod/mounts && mv /home/gmod/temp/cstrike /home/gmod/mounts/cstrike
-RUN rm -rf /home/gmod/temp
-
-# SETUP BINARIES FOR x64 bits
-RUN mkdir -p /home/gmod/.steam/sdk64 \
+# SETUP BINARIES FOR x32 and x64 bits
+RUN mkdir -p /home/gmod/.steam/sdk32 \
+    && cp -v /home/gmod/steamcmd/linux32/steamclient.so /home/gmod/.steam/sdk32/steamclient.so \
+    && mkdir -p /home/gmod/.steam/sdk64 \
     && cp -v /home/gmod/steamcmd/linux64/steamclient.so /home/gmod/.steam/sdk64/steamclient.so
-
-# SET GMOD MOUNT CONTENT
-RUN echo '"mountcfg" {"cstrike" "/home/gmod/mounts/cstrike"}' > /home/gmod/server/garrysmod/cfg/mount.cfg
 
 # CREATE DATABASE FILE
 RUN touch /home/gmod/server/garrysmod/sv.db
@@ -55,13 +45,24 @@ EXPOSE 27015/udp
 EXPOSE 27005/udp
 
 # SET ENVIRONMENT VARIABLES
-ENV MAXPLAYERS="16"
+ENV ARGS=""
 ENV GAMEMODE="sandbox"
 ENV MAP="gm_construct"
+ENV MAXPLAYERS="16"
+ENV MOUNT_BODY=""
+ENV MOUNT_FOOTER=""
+ENV MOUNT_GAMES="none"
 ENV PORT="27015"
 
+ENV MOUNT_TF="0"
+ENV MOUNT_CSS="0"
+
+# ADD MOUNT SCRIPTS
+COPY --chown=steam:steam assets/mount.sh /home/gmod/mount.sh
+RUN chmod +x /home/gmod/mount.sh
+
 # ADD START SCRIPT
-COPY --chown=steam:steam assets/start-x64.sh /home/gmod/start.sh
+COPY --chown=steam:steam assets/start.sh /home/gmod/start.sh
 RUN chmod +x /home/gmod/start.sh
 
 # CREATE HEALTH CHECK
