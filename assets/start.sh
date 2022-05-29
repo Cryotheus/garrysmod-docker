@@ -33,6 +33,4 @@ echo "Starting server on ${MODE} mode..."
 	-steam_dir "/home/gmod/steamcmd" \
 	-steamcmd_script "/home/gmod/update.txt" \
 	-port "${PORT}" \
-	-maxplayers "${MAXPLAYERS}" \
-	+gamemode "${GAMEMODE}" \
-	+map "${MAP}" "${ARGS}"
+	-maxplayers "${MAXPLAYERS}" "${ARGS}"
