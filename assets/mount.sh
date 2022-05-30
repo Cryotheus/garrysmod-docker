@@ -21,7 +21,7 @@ app_update $2 validate"
 	
 	#add this game to the list of mounted games
 	MOUNT_BODY="${MOUNT_BODY}
-	\"$1\" \"/home/gmod/mounts/$1\" "
+	\"$1\" \"/home/gmod/mounts/$1/$1\" "
 }
 
 #game mounting
