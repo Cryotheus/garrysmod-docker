@@ -28,37 +28,42 @@ app_update $2 validate"
 if [ "${MOUNT_CSGO}" -ne 0 ];
 then
 	MOUNT_ANON="1"
-	mount_game "csgo" "740"
+	#mount_game "csgo" "740" #srcds
+	mount_game "csgo" "730" #client
 fi
 
 if [ "${MOUNT_CSS}" -ne 0 ];
 then
 	MOUNT_ANON="1"
-	mount_game "cstrike" "232330"
+	mount_game "cstrike" "232330" #srcds
+	#mount_game "cstrike" "240" #client
 fi
 
 if [ "${MOUNT_DOD}" -ne 0 ];
 then
 	MOUNT_ANON="1"
-	mount_game "dod" "232290"
+	#mount_game "dod" "232290" #srcds
+	mount_game "dod" "300" #client
 fi
 
 if [ "${MOUNT_L4D}" -ne 0 ];
 then
 	MOUNT_ANON="1"
-	mount_game "left4dead" "222840"
+	#mount_game "left4dead" "222840" #srcds
+	mount_game "left4dead" "500" #client
 fi
 
 if [ "${MOUNT_L4D2}" -ne 0 ];
 then
 	MOUNT_ANON="1"
-	mount_game "left4dead2" "222860"
+	#mount_game "left4dead2" "222860" #srcds
+	mount_game "left4dead2" "550" #client
 fi
 
 if [ "${MOUNT_TF}" -ne 0 ];
 then
 	MOUNT_ANON="1"
-	mount_game "tf" "232250"
+	mount_game "tf" "232250" #srcds
 fi
 
 #mounts that need login
@@ -66,42 +71,42 @@ if [ "${MOUNT_HL1}" -ne 0 ];
 then
 	MOUNT_LOGIN="1"
 	MOUNT_HL1="0"
-	mount_game "hl1" "280"
+	mount_game "hl1" "280" #client
 fi
 
 if [ "${MOUNT_HL2_EP1}" -ne 0 ];
 then
 	MOUNT_LOGIN="1"
 	MOUNT_HL2_EP1="0"
-	mount_game "episodic" "380"
+	mount_game "episodic" "380" #client
 fi
 
 if [ "${MOUNT_HL2_EP2}" -ne 0 ];
 then
 	MOUNT_LOGIN="1"
 	MOUNT_HL2_EP2="0"
-	mount_game "ep2" "420"
+	mount_game "ep2" "420" #client
 fi
 
 if [ "${MOUNT_HL2_LOST_COAST}" -ne 0 ];
 then
 	MOUNT_LOGIN="1"
 	MOUNT_HL2_LOST_COAST="0"
-	mount_game "lostcoast" "340"
+	mount_game "lostcoast" "340" #client
 fi
 
 if [ "${MOUNT_PORTAL}" -ne 0 ];
 then
 	MOUNT_LOGIN="1"
 	MOUNT_PORTAL="0"
-	mount_game "portal" "400"
+	mount_game "portal" "400" #client
 fi
 
 if [ "${MOUNT_PORTAL2}" -ne 0 ];
 then
 	MOUNT_LOGIN="1"
 	MOUNT_PORTAL2="0"
-	mount_game "portal2" "620"
+	mount_game "portal2" "620" #client
 fi
 
 #do the mounting
