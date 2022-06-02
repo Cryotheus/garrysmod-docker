@@ -6,15 +6,15 @@ Set these environment varialbes to 1 if you want the content mounted.
 If a login is required, you will need to manually inout your login to steamcmd. Games that require login will not update themselves on start.
 | Variable | Default | Login | Game Title
 | :---: | :---: | :---: | :---
-| `MOUNT_CSGO` | `0` | `no` | Counter-Strike: Global Offensive
+| `MOUNT_CSGO` | `0` | `yes` | Counter-Strike: Global Offensive
 | `MOUNT_CSS` | `1` | `no` | Counter-Strike: Source
-| `MOUNT_DOD` | `0` | `no` | Day of Defeat
+| `MOUNT_DOD` | `0` | `yes` | Day of Defeat
 | `MOUNT_HL1` | `0` | `yes` | Half-Life: Source
 | `MOUNT_HL2_EP1` | `0` | `yes` | Half-Life 2: Episode 1
 | `MOUNT_HL2_EP2` | `0` | `yes` | Half-Life 2: Episode 2
 | `MOUNT_HL2_LOST_COAST` | `0` | `yes` | Half-Life 2: Lost Coast
-| `MOUNT_L4D` | `0` | `no` | Left 4 Dead
-| `MOUNT_L4D2` | `0` | `no` | Left 4 Dead 2
+| `MOUNT_L4D` | `0` | `yes` | Left 4 Dead
+| `MOUNT_L4D2` | `0` | `yes` | Left 4 Dead 2
 | `MOUNT_PORTAL` | `0` | `yes` | Portal
 | `MOUNT_PORTAL2` | `0` | `yes` | Portal 2
 | `MOUNT_TF` | `0` | `no` | Team Fortress 2
